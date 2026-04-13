@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap');
+
+:root {
+  --paper:       #F0EEE9;
+  --charcoal:    #3A3830;
+  --ink:         #2A2820;
+  --ink-mid:     #5A5848;
+  --ink-light:   #8A8878;
+  --ink-faint:   #C0BEB6;
+  --rule:        rgba(58,56,48,0.12);
+  --rule-strong: rgba(58,56,48,0.22);
+  --mono:        'IBM Plex Mono', monospace;
+  --serif:       'Source Serif 4', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--charcoal);
+  margin: 0;
+  padding: 0;
+  font-family: var(--mono);
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+}
+
+/* ── LAYOUT ── */
+
+.split-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#viewer-container {
+  position: relative;
+  flex: 1;
+  height: 100vh;
+  background: #1C1B18;
+}
+
+#imageviewer {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── ANNOTATION PANEL ── */
+
+#annotation-panel {
+  width: 340px;
+  min-width: 340px;
+  height: 100vh;
+  background: var(--paper);
+  border-left: 1px solid var(--rule-strong);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#annotation-header {
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+
+#annotation-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  display: block;
+  margin-bottom: 8px;
+}
+
+#annotation-label {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+#annotation-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 22px;
+}
+
+#annotation-text {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink-mid);
+}
+
+#annotation-body::-webkit-scrollbar { width: 3px; }
+#annotation-body::-webkit-scrollbar-track { background: transparent; }
+#annotation-body::-webkit-scrollbar-thumb { background: var(--ink-faint); }
+
+#annotation-footer {
+  padding: 12px 22px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+  line-height: 1.7;
+}
+
+/* ── TOOLBAR TOP (page counter + nav) ── */
+
+.interface-area-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 14px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.toolbar-top {
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240,238,233,0.92);
+  border: 0.5px solid var(--rule-strong);
+  border-radius: 4px;
+  padding: 0 10px;
+  height: 32px;
+  gap: 4px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+#currentpage {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  pointer-events: none;
+  background: transparent;
+  padding: 0 6px;
+}
+
+/* ── TOOLBAR BOTTOM (zoom + home) ── */
+
+.interface-area-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 14px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.toolbar-bottom {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 8px;
+  height: 40px;
+  background: rgba(240,238,233,0.92);
+  border: 0.5px solid var(--rule-strong);
+  border-radius: 4px;
+  gap: 2px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* ── NAV BUTTONS ── */
+
+.NavButton {
+  pointer-events: auto;
+  width: 28px;
+  height: 28px;
+  opacity: 0.6;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 0.15s;
+}
+
+.NavButton:hover { opacity: 1; }
+
+#Home {
+  background: url(https://data.dh.gu.se/ui-icons/frame_small_white.png) center/cover no-repeat;
+  filter: invert(1);
+}
+
+#ZoomIn {
+  background: url(https://data.dh.gu.se/ui-icons/zoomin_big_white.png) center/100% no-repeat;
+  filter: invert(1);
+}
+
+#ZoomOut {
+  background: url(https://data.dh.gu.se/ui-icons/zoomout_big_white.png) center/100% no-repeat;
+  filter: invert(1);
+}
+
+#Prev {
+  background: url(https://data.dh.gu.se/ui-icons/arrow_prev_white.png) center/35px no-repeat;
+  filter: invert(1);
+  width: 22px;
+  height: 20px;
+}
+
+#Next {
+  background: url(https://data.dh.gu.se/ui-icons/arrow_next_white.png) center/35px no-repeat;
+  filter: invert(1);
+  width: 22px;
+  height: 20px;
+}
+
+/* ── VERTICAL TOOLBAR (rotate) ── */
+
+#ToolbarVertical {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1000;
+}
+
+#RotateLeft {
+  background: url(https://data.dh.gu.se/ui-icons/rotate_left_white.png) center/45% no-repeat;
+  background-color: rgba(240,238,233,0.85);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  border: 0.5px solid var(--rule-strong);
+}
+
+#RotateRight {
+  background: url(https://data.dh.gu.se/ui-icons/rotate_right_white.png) center/45% no-repeat;
+  background-color: rgba(240,238,233,0.85);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  border: 0.5px solid var(--rule-strong);
+}
+
+*:focus { outline: none !important; }

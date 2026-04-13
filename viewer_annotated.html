@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Generalplan för Stockholm 1952 — Selected Pages</title>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=2.0">
+  <link rel="stylesheet" type="text/css" href="viewer_style.css">
+  <script src="javascript/jquery-3.5.1.min.js"></script>
+  <script src="javascript/openseadragon/openseadragon.min.js"></script>
+  <script src="javascript/openseadragon/openseadragon-scalebar.js"></script>
+</head>
+
+<body>
+  <div class="split-layout">
+
+    <!-- IMAGE VIEWER -->
+    <div id="viewer-container">
+      <div id="imageviewer"></div>
+
+      <div class="interface-area-top">
+        <div class="toolbar-top">
+          <a id="prev-button" href="#previous-page">
+            <div id="Prev" class="NavButton"></div>
+          </a>
+          <span id="currentpage">1 / 9</span>
+          <a id="next-button" href="#next-page">
+            <div id="Next" class="NavButton"></div>
+          </a>
+        </div>
+      </div>
+
+      <div id="ToolbarVertical">
+        <a id="rotate-left" href="#rotate-left">
+          <div id="RotateLeft" class="NavButton"></div>
+        </a>
+        <a id="rotate-right" href="#rotate-right">
+          <div id="RotateRight" class="NavButton"></div>
+        </a>
+      </div>
+
+      <div class="interface-area-bottom">
+        <div class="toolbar-bottom">
+          <a id="home" href="#home">
+            <div id="Home" class="NavButton"></div>
+          </a>
+          <a id="zoom-in" href="#zoom-in">
+            <div id="ZoomIn" class="NavButton"></div>
+          </a>
+          <a id="zoom-out" href="#zoom-out">
+            <div id="ZoomOut" class="NavButton"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANNOTATION PANEL -->
+    <aside id="annotation-panel">
+      <div id="annotation-header">
+        <span id="annotation-tag">Generalplan för Stockholm · 1945–1952</span>
+        <div id="annotation-label">Cover</div>
+      </div>
+      <div id="annotation-body">
+        <p id="annotation-text"></p>
+      </div>
+      <div id="annotation-footer">
+        Stockholms stads stadsplanekontor<br>
+        Source: Stockholmskällan / Stadsarkivet · CC-BY 4.0
+      </div>
+    </aside>
+
+  </div>
+
+  <script type="text/javascript">
+    var pages = [
+      {
+        id: "img_1952_cover",
+        label: "Cover",
+        annotation: "Generalplan för Stockholm, prepared by Stockholms stads stadsplanekontor between 1945 and 1952. The plan is a comprehensive programme for the expansion of Stockholm across 472 pages and 23 chapters, covering topics from the size and structure of Greater Stockholm to housing areas, green zones, transport, and technical services. It was the instrument through which the postwar welfare city was spatially defined."
+      },
+      {
+        id: "img_1952_c3_p80",
+        label: "Kapitel 3, p. 80 — Vinter-Stockholm och Sommar-Stockholm",
+        annotation: "Map of Vinter-Stockholm and Sommar-Stockholm, chapter 3, figure 3/2. The map shows the occupational character of municipalities in Greater Stockholm according to the 1940 census. The bold boundary traces Winter Stockholm — the area dominated by the permanent urban population of Greater Stockholm. The dashed boundary traces Summer Stockholm — the area within which Stockholmers dispersed during the summer months. The gap between the two boundaries is the territory the green wedge system was designed to protect from permanent urban fill."
+      },
+      {
+        id: "img_1952_c3_p79",
+        label: "Kapitel 3, p. 79 — The alternation between summer and winter",
+        annotation: "Chapter 3, page 79. The plan describes the alternation between summer and winter as a defining characteristic of the Stockholm environment: 'The alternation between the ways of living in summer and winter is a distinctive feature of the Stockholm milieu. The cottage by the jetty comes close to the ideal for a summer dwelling. The advantages of living in the compact city are felt during the dark and cold season.' The two photographs on this page frame the argument visually — a summer dwelling by the water above, a snow-covered winter city below."
+      },
+      {
+        id: "img_1952_c8_p145",
+        label: "Kapitel 8, p. 145 — Green wedges and summer settlements",
+        annotation: "Chapter 8, page 145. This page introduces the wedge-shaped nature reserves that penetrate deep into the urban fabric as a fundamental feature of Greater Stockholm's structure. The caption reads: 'A fundamental feature of the structure of Greater Stockholm is the wedge-shaped nature reserves that penetrate far into the urban development. The large nature areas and the genuinely summer communities are, however, assumed to be located in the periphery of Greater Stockholm.' The two images show the edge condition between forest and water that characterises the wedge interiors."
+      },
+      {
+        id: "img_1952_c2_p73",
+        label: "Kapitel 2, p. 73 — The topography of greater Stockholm",
+        annotation: "Chapter 2, page 73. The plan describes Stockholm's medieval city as built on an ideal site — a grass-covered hill surrounded by water — but notes that such natural conditions are rare. Much of the city has since spread across a fractured rocky surface with little vegetation-bearing soil. The good building land lies at the transition between rock faces and clay plains, and it is there that the oldest settlement is concentrated. The aerial photographs show the rocky, fragmented topography that would shape the form of the wedges between built areas."
+      },
+      {
+        id: "img_1952_c8_p146",
+        label: "Kapitel 8, p. 146 — Summer Stockholm's transport problem",
+        annotation: "Chapter 8, page 146. The expanding reach of Summer Stockholm across the archipelago created transport problems requiring new solutions. The caption notes that the old white archipelago boats are disappearing as road traffic takes over, and that the development of the bus network is a key precondition for summer settlement and dispersed suburban development within Greater Stockholm. The upper photograph shows the crowded departure quays; the lower shows summer traffic conditions on a central Stockholm street, where cycling volume reaches five times that of cars."
+      },
+      {
+        id: "img_1952_c11_p224",
+        label: "Kapitel 11, p. 224 — Open-air bathing and summer festivals",
+        annotation: "Chapter 11, page 224. Despite Stockholm's many waterways, the plan notes that large areas of the population can only access open-air bathing in land-based pools. The page argues that once the sewage system is fully built out, clean water in Lake Mälaren and smaller lakes would allow bathing directly from the shores. The lower aerial photograph shows a summer festival site — described as a characteristic element of Stockholm life requiring space and consideration in the planning. The plan treats summer leisure infrastructure as a planning obligation, not an amenity."
+      },
+      {
+        id: "img_1952_c19_p341",
+        label: "Kapitel 19, p. 341 — Boat clubs and winter storage",
+        annotation: "Chapter 19, page 341. Boat clubs are described as having persistent difficulty finding space for harbours and winter storage. The plan notes that it is primarily inner-city residents who solve their recreation problem by acquiring a boat — requiring not only a nearby harbour but also a winter storage facility where the boat can be prepared in spring. The lower aerial photograph shows a new residential area with a planned small-boat harbour, illustrating the attempt to integrate seasonal recreational infrastructure into the fabric of the new suburbs."
+      },
+      {
+        id: "img_1952_c19_p342",
+        label: "Kapitel 19, p. 342 — Leisure infrastructure and summer parks",
+        annotation: "Chapter 19, page 342. The area around Djurgårdsslätten and Allmänna gränd is described as the traditional centre of leisure life during the summer half of the year. The plan argues that the existing facilities do not suffice for the whole city, and proposes permanent festival venues at Lillsjönäs, Sicka, and Nybohovsberget. The southwest area around Lillsjön is designated for a play field, an open-air bath with two pools, and a festival ground containing two dance floors, a market square, and a restaurant. The sketches on this page are proposals — planning as projection."
+      }
+    ];
+
+    var tileSources = pages.map(function(p) {
+      return "https://iiif.archive.org/image/iiif/2/" + encodeURIComponent(p.id + "/" + p.id + ".jpg") + "/info.json";
+    });
+
+    function updatePanel(index) {
+      var page = pages[index];
+      document.getElementById("annotation-label").textContent = page.label;
+      document.getElementById("annotation-text").textContent = page.annotation;
+      document.getElementById("annotation-tag").textContent =
+        "p. " + (index + 1) + " of " + pages.length + " · Generalplan för Stockholm · 1945–1952";
+      document.getElementById("currentpage").innerHTML = (index + 1) + " / " + pages.length;
+      document.getElementById("annotation-body").scrollTop = 0;
+    }
+
+    var viewer = OpenSeadragon({
+      id: "imageviewer",
+      immediateRender: false,
+      visibilityRatio: 0.8,
+      minZoomImageRatio: 0.8,
+      maxZoomPixelRatio: 2,
+      homeFillsViewer: false,
+      showZoomControl: true,
+      showHomeControl: true,
+      showFullPageControl: false,
+      showNavigator: false,
+      preserveViewport: false,
+      zoomInButton:      "zoom-in",
+      zoomOutButton:     "zoom-out",
+      nextButton:        "next-button",
+      previousButton:    "prev-button",
+      homeButton:        "home",
+      showRotationControl: true,
+      rotateLeftButton:  "rotate-left",
+      rotateRightButton: "rotate-right",
+      gestureSettingsTouch: { pinchRotate: true },
+      sequenceMode: true,
+      prefixUrl: "javascript/openseadragon/images/",
+      tileSources: tileSources
+    });
+
+    viewer.addHandler("page", function(data) {
+      updatePanel(data.page);
+    });
+
+    updatePanel(0);
+  </script>
+</body>
+</html>
